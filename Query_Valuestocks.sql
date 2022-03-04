@@ -3,4 +3,4 @@ with t1 as (select company ,CAST(RIGHT(CAST(fiscal_year as VARCHAR), 4)AS Intege
 ),
 t2 as (select *,count(*) over (partition by difference)as number_of_partition from t1)
 
-select distinct(company) from t2 where number_of_partition >=3
+select  array_agg(distinct company) valuestocks  from t2 where number_of_partition >=3
